@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.howbuy.trade.dao.TradeMapper" >
+	<resultMap id="BaseResultMap" type="com.howbuy.trade.dto.TradeDTO" >
+		<id column="tradeId" property="tradeId" jdbcType="INTEGER" />
+		<result column="tradeCustId" property="tradeCustId" jdbcType="INTEGER" />
+		<result column="" property="" jdbcType="VARCHAR" />
+		<result column="" property="" jdbcType="VARCHAR" />
+		<result column="" property="" jdbcType="VARCHAR" />
+		<result column="" property="" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		tradeId,tradeCustId
+	</sql>
+	
+	<insert id="insertSelective" parameterType="com.howbuy.trade.dto.TradeDTO" >
+    	insert into tb_trade
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	    	<if test="tradeId != null" >
+	        	tradeId,
+	      	</if>
+	      	<if test="tradeCustId != null" >
+	        	tradeCustId,
+	      	</if>
+	      	<if test=" != null" >
+	        	,
+	      	</if>
+	      	<if test=" != null" >
+	        	,
+	      	</if>
+	      	<if test=" != null" >
+	        	,
+	      	</if>
+	      	<if test=" != null" >
+	        	
+	      	</if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	    	<if test="tradeId != null" >
+	        	#{tradeId,jdbcType=INTEGER},
+	      	</if>
+	      	<if test="tradeCustId != null" >
+	        	#{tradeCustId,jdbcType=INTEGER},
+	      	</if>
+	      	<if test=" != null" >
+	        	#{,jdbcType=},
+	      	</if>
+	      	<if test=" != null" >
+	        	#{,jdbcType=},
+	      	</if>
+	      	<if test=" != null" >
+	        	#{,jdbcType=},
+	      	</if>
+	      	<if test=" != null" >
+	        	#{,jdbcType=}
+	      	</if>
+	    </trim>
+     </insert>
+     
+     <update id="updateByPrimaryKeySelective" parameterType="com.howbuy.trade.dto.CustDTO" >
+     	update tb_trade
+     	<set>
+      		<if test="tradeCustId != null" >
+        		tradeCustId = #{tradeCustId,jdbcType=INTEGER},
+      		</if>
+      		<if test=" != null" >
+        		 = #{,jdbcType=},
+      		</if>
+      		<if test=" != null" >
+        		 = #{,jdbcType=},
+      		</if>
+      		<if test=" != null" >
+        		 = #{,jdbcType=},
+      		</if>
+      		<if test=" != null" >
+        		 = #{,jdbcType=},
+      		</if>
+   		</set>
+   		where tradeId = #{tradeId,jdbcType=INTEGER}
+	</update>
+</mapper>

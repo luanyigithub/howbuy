@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.howbuy.trade.dao.CustMapper" >
+	<resultMap id="BaseResultMap" type="com.howbuy.trade.dto.CustDTO" >
+		<id column="custId" property="custId" jdbcType="INTEGER" />
+		<result column="custName" property="custName" jdbcType="VARCHAR" />
+		<result column="custPass" property="custPass" jdbcType="VARCHAR" />
+		<result column="idNo" property="idNo" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		custId,custName,custPass,idNo,mobile,status
+	</sql>
+	
+	<insert id="insertSelective" parameterType="com.howbuy.trade.dto.CustDTO" >
+    	insert into tb_cust
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	    	<if test="custId != null" >
+	        	custId,
+	      	</if>
+	      	<if test="custName != null" >
+	        	custName,
+	      	</if>
+	      	<if test="custPass != null" >
+	        	custPass,
+	      	</if>
+	      	<if test="idNo != null" >
+	        	idNo,
+	      	</if>
+	      	<if test="mobile != null" >
+	        	mobile,
+	      	</if>
+	      	<if test="status != null" >
+	        	status
+	      	</if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	    	<if test="custId != null" >
+	        	#{custId,jdbcType=INTEGER},
+	      	</if>
+	      	<if test="custName != null" >
+	        	#{custName,jdbcType=VARCHAR},
+	      	</if>
+	      	<if test="custPass != null" >
+	        	#{custPass,jdbcType=VARCHAR},
+	      	</if>
+	      	<if test="idNo != null" >
+	        	#{idNo,jdbcType=VARCHAR},
+	      	</if>
+	      	<if test="mobile != null" >
+	        	#{mobile,jdbcType=VARCHAR},
+	      	</if>
+	      	<if test="status != null" >
+	        	#{status,jdbcType=VARCHAR}
+	      	</if>
+	    </trim>
+     </insert>
+     
+     <update id="updateByPrimaryKeySelective" parameterType="com.howbuy.trade.dto.CustDTO" >
+     	update tb_cust
+     	<set>
+      		<if test="custName != null" >
+        		custName = #{custName,jdbcType=VARCHAR},
+      		</if>
+      		<if test="custPass != null" >
+        		custPass = #{custPass,jdbcType=VARCHAR},
+      		</if>
+      		<if test="idNo != null" >
+        		idNo = #{idNo,jdbcType=VARCHAR},
+      		</if>
+      		<if test="mobile != null" >
+        		mobile = #{mobile,jdbcType=VARCHAR},
+      		</if>
+      		<if test="status != null" >
+        		status = #{status,jdbcType=VARCHAR},
+      		</if>
+   		</set>
+   		where custId = #{custId,jdbcType=INTEGER}
+	</update>
+</mapper>
